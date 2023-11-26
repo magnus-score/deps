@@ -71,7 +71,7 @@ python_bin=$(which python${PYTHON_VERSION}) || exit 222
 
 ${python_bin} -m pip install --user pynvim --upgrade --no-cache-dir 2>/dev/null
 
-cp "$(realpath "$0"))/neovim_misc/init.vim" "${vimrc}"
+cp "$(realpath "$0")/neovim_misc/init.vim" "${vimrc}" || exit ${LINENO}
 
 awk -i inplace -v pb="${python_bin}" '{ gsub(/->python-bin<-/, pb) ; print }' "${vimrc}"
 
