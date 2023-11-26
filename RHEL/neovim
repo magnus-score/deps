@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 src_dir="/opt/neovim"
+root_path=
+
 
 install() {
   if [[ $USER = 'root' ]]; then
@@ -72,7 +74,7 @@ python_bin=$(which python${PYTHON_VERSION}) || exit 222
 ${python_bin}  -m pip freeze --user | grep -q 'pynvim' || \
   ${python_bin} -m pip install --user pynvim --upgrade --no-cache-dir 2>/dev/null
 
-cp "$(dirname "$(realpath "$0")")/neovim_misc/init.vim" "${vimrc}" || exit ${LINENO}
+cp "${root_path}/neovim_misc/init.vim" "${vimrc}" || exit ${LINENO}
 
 awk -i inplace -v pb="${python_bin}" '{ gsub(/->python-bin<-/, pb) ; print }' "${vimrc}"
 
