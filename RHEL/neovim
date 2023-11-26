@@ -17,7 +17,7 @@ if [[ $USER = 'root' ]]; then
     ;;
   esac
 
-  rm -f "$(which nvim)"
+  rm -f "$(which nvim 2>/dev/null)"
 
   src_dir="/opt/neovim"
 
@@ -60,11 +60,9 @@ mkdir -p "${vim_conf_dir}"
 
 vimrc="${vim_conf_dir}/init.vim"
 
-cp "$(dirname "$0")/neovim_misc/init.vim" "${vimrc}"
+cat "$(dirname "$0")/neovim_misc/init.vim" > "${vimrc}"
 
 python_bin=$(which python${PYTHON_VERSION}) || exit 222
-
-sed -e "s/<-python-bin->/${python_bin}/g" "${vimrc}"
 
 ${python_bin} -m pip install --user pynvim --upgrade --no-cache-dir 2>/dev/null
 

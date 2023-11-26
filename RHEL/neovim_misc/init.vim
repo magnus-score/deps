@@ -62,8 +62,8 @@ set fileformat=unix
 set hlsearch
 set incsearch
 
-call plug#begin("~/.config/nvim/plugged")
-    Plug 'Valloric/YouCompleteMe', { 'dir': '~/.config/nvim/plugged/YouCompleteMe', 'do': '<-python-bin-> install.py --force-sudo' }
+call plug#begin("${HOME}/.config/nvim/plugged")
+    Plug 'Valloric/YouCompleteMe', { 'dir': '${HOME}/.config/nvim/plugged/YouCompleteMe', 'do': '${python_bin} install.py --force-sudo' }
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all 2>&1 > /dev/null' }
@@ -91,7 +91,7 @@ call plug#end()
 "let g:lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
 "let g:lastplace_ignore_buftype = "quickfix,nofile,help"
 "let g:lastplace_open_folds = 0
-let g:python3_host_prog = '<-python-bin->'
+let g:python3_host_prog = '${python_bin}'
 
 nmap <F2> :SudoWrite<CR>
 vmap <F2> <Esc> :SudoWrite<CR>
