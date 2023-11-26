@@ -69,7 +69,8 @@ vimrc="${vim_conf_dir}/init.vim"
 
 python_bin=$(which python${PYTHON_VERSION}) || exit 222
 
-${python_bin} -m pip install --user pynvim --upgrade --no-cache-dir 2>/dev/null
+${python_bin}  -m pip freeze --user | grep -q 'pynvim' || \
+  ${python_bin} -m pip install --user pynvim --upgrade --no-cache-dir 2>/dev/null
 
 cp "$(dirname "$(realpath "$0")")/neovim_misc/init.vim" "${vimrc}" || exit ${LINENO}
 
