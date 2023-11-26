@@ -2,6 +2,8 @@
 
 src_dir="/opt/neovim"
 
+
+
 install() {
   if [[ $USER = 'root' ]]; then
     local RELEASE
@@ -54,7 +56,9 @@ install() {
 
 }
 
-[[ ! -d ${src_dir} ]] && install
+if [[ ! -d ${src_dir} ]] || [[  $1 = "force" ]]; then
+  install
+fi
 
 PYTHON_VERSION='3.11'
 
