@@ -65,7 +65,7 @@ mkdir -p "${vim_conf_dir}"
 
 vimrc="${vim_conf_dir}/init.vim"
 
-tee "${vimrc}" <"$(dirname "$0")/neovim_misc/init.vim"
+tee "${vimrc}" <<<"$(cat "$(dirname "$0")/neovim_misc/init.vim")"
 
 python_bin=$(which python${PYTHON_VERSION}) || exit 222
 
